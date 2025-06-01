@@ -29,30 +29,14 @@ if %errorLevel% neq 0 (
 )
 
 REM Check if required Python packages are installed
-echo Checking Python dependencies...
-python -c "import PIL, exifread" >nul 2>&1
-if %errorLevel% neq 0 (
     echo.
-    echo WARNING: Required Python packages not found!
-    echo Please install them by running:
+    echo Required Python packages: Pillow and Exifread
+    echo Please install them by running if not installed already :
     echo   pip install Pillow ExifRead
     echo.
-    echo Would you like to install them now? (Y/N)
-    set /p install_deps=
-    if /i "%install_deps%"=="Y" (
-        echo Installing dependencies...
-        pip install Pillow ExifRead
-        if %errorLevel% neq 0 (
-            echo Failed to install dependencies!
-            pause
-            exit /b 1
-        )
-    ) else (
-        echo Continuing without installing dependencies...
-    )
-)
 
-REM Check if exiftool_v12.py exists in the same directory
+
+REM Check if exiftool.py exists in the same directory
 if not exist "%~dp0exiftool.py" (
     echo.
     echo ERROR: exiftool.py not found in the same directory!
